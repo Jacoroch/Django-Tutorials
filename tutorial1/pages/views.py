@@ -17,3 +17,20 @@ class AboutPageView(TemplateView):
             "author": "Developed by: Your Name",
         })
         return context
+    
+
+class ContactPageView(TemplateView):
+    template_name = 'pages/contact.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context.update({
+            "title": "Contact Us - Online Store",
+            "subtitle": "Contacto",
+            "email": "contacto@onlinestore.com",
+            "address": "Calle Mugiwara, Wano Island",
+            "phone": "+123 456 789",
+        })
+        return context
+
+
