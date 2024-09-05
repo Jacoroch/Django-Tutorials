@@ -81,6 +81,13 @@ class ProductForm(forms.Form):
     name = forms.CharField(required=True)
     price = forms.FloatField(required=True)
 
+    # Método para validar que el precio sea mayor que cero
+    def clean_price(self):
+        price = self.cleaned_data.get('price')
+        if price <= 0:
+            raise forms.ValidationError("The price must be greater than zero.")
+        return price
+    
 class ProductCreateView(View):
     template_name = 'products/create.html'
 
@@ -95,12 +102,13 @@ class ProductCreateView(View):
     def post(self, request):
         form = ProductForm(request.POST)
         if form.is_valid():
-            # Procesa el formulario y redirige si es necesario
-            return redirect('form')
+            # Si el formulario es válido, redirigimos a la página de confirmación
+            return redirect('product_created')
         else:
             viewData = {
                 "title": "Create product",
                 "form": form,
             }
             return render(request, self.template_name, viewData)
+
 
