@@ -117,5 +117,7 @@ class ProductListView(ListView):
         context['title'] = 'Products - Online Store'
         context['subtitle'] = 'List of products'
         return context    
+    
+#tutorial3
 
 
