@@ -118,6 +118,6 @@ class ProductListView(ListView):
         context['subtitle'] = 'List of products'
         return context    
     
-#tutorial3
+#tutorial3 
 
 
